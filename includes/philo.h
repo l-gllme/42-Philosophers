@@ -1,18 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philosophers.c                                     :+:      :+:    :+:   */
+/*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lguillau <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/10 13:26:25 by lguillau          #+#    #+#             */
-/*   Updated: 2022/05/10 13:27:32 by lguillau         ###   ########.fr       */
+/*   Created: 2022/05/10 14:15:00 by lguillau          #+#    #+#             */
+/*   Updated: 2022/05/10 14:18:54 by lguillau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philosophers.h"
+#ifndef PHILO_H
+# define PHILO_H
 
-int	main(void)
-{
-	write(1, "Hello World!\n", 13);
-}
+# include <stdlib.h>
+# include <stdio.h>
+# include <unistd.h>
+
+/* Utils */
+
+int	ft_is_number(char *s);
+
+#endif

@@ -1,20 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philosophers.h                                     :+:      :+:    :+:   */
+/*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lguillau <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/10 13:25:19 by lguillau          #+#    #+#             */
-/*   Updated: 2022/05/10 13:26:13 by lguillau         ###   ########.fr       */
+/*   Created: 2022/05/10 14:22:29 by lguillau          #+#    #+#             */
+/*   Updated: 2022/05/10 14:25:04 by lguillau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILOSOPHERS_H
-# define PHILOSOPHERS_H
+#include "philo.h"
 
-# include <stdlib.h>
-# include <stdio.h>
-# include <unistd.h>
+int	ft_check_args(int ac, char **av)
+{
+	int	i;
 
-#endif
+	i = -1;
+	if (ac < 5 || ac > 6)
+	{
+		
+	}
+	while (
+	return (0);
+}

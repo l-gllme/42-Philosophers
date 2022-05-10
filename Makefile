@@ -6,11 +6,12 @@
 #    By: lguillau <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/10 13:20:14 by lguillau          #+#    #+#              #
-#    Updated: 2022/05/10 13:24:55 by lguillau         ###   ########.fr        #
+#    Updated: 2022/05/10 14:19:19 by lguillau         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-FILES	=	philosophers.c \
+FILES	=	philo.c \
+		utils/str_tools.c \
 
 S_PATH	=	srcs/
 O_PATH	=	objs/
@@ -19,7 +20,7 @@ I_PATH	=	includes/
 SRCS	=	${addprefix ${S_PATH}, ${FILES}}
 OBJS	=	${addprefix ${O_PATH}, ${FILES:.c=.o}}
 
-NAME	=	philosophers
+NAME	=	philo
 
 CC	=	clang
 
