@@ -1,32 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.c                                            :+:      :+:    :+:   */
+/*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lguillau <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/10 13:26:25 by lguillau          #+#    #+#             */
-/*   Updated: 2022/05/11 13:48:38 by lguillau         ###   ########.fr       */
+/*   Created: 2022/05/11 13:26:47 by lguillau          #+#    #+#             */
+/*   Updated: 2022/05/11 13:28:50 by lguillau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#ifndef STRUCT_H
+# define STRUCT_H
 
-int	main(int ac, char **av)
+typedef struct	s_global
 {
-	t_g	*v;
+	int	*args;
+	int	len_args;
+}	t_g;
 
-	v = malloc(sizeof(t_g));
-	if (!v)
-	{
-		ft_putstr_fd("Error: malloc failled in main\n", 2);
-		return (-1);
-	}
-	if (ft_check_args(ac, av, v) == -1)
-	{
-		free(v);
-		return (-1);
-	}
-	ft_free(v);
-	return (0);
-}
+#endif

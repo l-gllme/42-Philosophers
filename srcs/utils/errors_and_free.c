@@ -1,32 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.c                                            :+:      :+:    :+:   */
+/*   errors_and_free.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lguillau <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/10 13:26:25 by lguillau          #+#    #+#             */
-/*   Updated: 2022/05/11 13:48:38 by lguillau         ###   ########.fr       */
+/*   Created: 2022/05/11 13:47:16 by lguillau          #+#    #+#             */
+/*   Updated: 2022/05/11 13:48:07 by lguillau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	main(int ac, char **av)
+void	ft_free(t_g *v)
 {
-	t_g	*v;
-
-	v = malloc(sizeof(t_g));
-	if (!v)
-	{
-		ft_putstr_fd("Error: malloc failled in main\n", 2);
-		return (-1);
-	}
-	if (ft_check_args(ac, av, v) == -1)
-	{
-		free(v);
-		return (-1);
-	}
-	ft_free(v);
-	return (0);
+	free(v->args);
+	free(v);
 }
