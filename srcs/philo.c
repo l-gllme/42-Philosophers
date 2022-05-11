@@ -6,7 +6,7 @@
 /*   By: lguillau <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 13:26:25 by lguillau          #+#    #+#             */
-/*   Updated: 2022/05/10 14:22:10 by lguillau         ###   ########.fr       */
+/*   Updated: 2022/05/11 12:54:26 by lguillau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	main(int ac, char **av)
 {
-	if (ft_check_args(int ac, char **av) == -1)
+	if (ft_check_args(ac, av) == -1)
 		return (0);
 	return (0);
 }

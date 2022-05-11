@@ -6,7 +6,7 @@
 /*   By: lguillau <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 14:13:59 by lguillau          #+#    #+#             */
-/*   Updated: 2022/05/10 14:27:45 by lguillau         ###   ########.fr       */
+/*   Updated: 2022/05/11 12:54:49 by lguillau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,25 +51,6 @@ void	free_char_tab(char **s)
 		i++;
 	}
 	free(s);
-}
-
-void	ft_putnbr_fd(int n, int fd)
-{
-	unsigned int	nb;
-
-	nb = n;
-	if (n < 0)
-	{
-		ft_putchar_fd('-', fd);
-		nb = n * -1;
-	}
-	if (nb > 9)
-	{
-		ft_putnbr_fd(nb / 10, fd);
-		ft_putnbr_fd(nb % 10, fd);
-	}
-	else
-		ft_putchar_fd(nb + '0', fd);
 }
 
 void	ft_putstr_fd(char *s, int fd)

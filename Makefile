@@ -6,12 +6,13 @@
 #    By: lguillau <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/10 13:20:14 by lguillau          #+#    #+#              #
-#    Updated: 2022/05/10 14:19:19 by lguillau         ###   ########.fr        #
+#    Updated: 2022/05/11 12:55:52 by lguillau         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 FILES	=	philo.c \
 		utils/str_tools.c \
+		parsing/parsing.c \
 
 S_PATH	=	srcs/
 O_PATH	=	objs/
