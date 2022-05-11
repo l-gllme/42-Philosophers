@@ -6,7 +6,7 @@
 /*   By: lguillau <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 14:22:29 by lguillau          #+#    #+#             */
-/*   Updated: 2022/05/11 17:02:31 by lguillau         ###   ########.fr       */
+/*   Updated: 2022/05/11 17:14:56 by lguillau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,36 +59,34 @@ int	ft_check_args(int ac, char **av, t_g *v)
 		}
 	}
 	i = 0;
-	v->len_args = ac - 1;
-	v->args = malloc(sizeof(int) * (ac - 1));
-	if (!v->args)
-	{
-		ft_putstr_fd("Error: malloc failed in check_args\n", 2);
-		return (-1);
-	}
-	j = -1;
 	while (av[++i])
 	{
 		if (ft_strlen(av[i]) > 11)
 		{
 			ft_putstr_fd("Error: number too big detected\n", 2);
-			free(v->args);
 			return (-1);
 		}
 		number = ft_atoi(av[i]);
 		if (number > 2147483647)
 		{
 			ft_putstr_fd("Error: number too big detected\n", 2);
-			free(v->args);
 			return (-1);
 		}
 		if (number < 0)
 		{
 			ft_putstr_fd("Error: negative number detected\n", 2);
-			free(v->args);
 			return (-1);
 		}
-		v->args[++j] = number;
+		if (i == 1)
+			v->nbr_philo = number;
+		if (i == 2)
+			v->time_to_die = number;
+		if (i = 3)
+			v->time_to_eat = number;
+		if (i = 4)
+			v->time_to_sleep = number;
+		if (i == 5)
+			v->nbr_of_eat = number;
 	}
 	return (0);
 }
