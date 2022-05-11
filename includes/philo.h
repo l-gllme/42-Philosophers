@@ -6,7 +6,7 @@
 /*   By: lguillau <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 14:15:00 by lguillau          #+#    #+#             */
-/*   Updated: 2022/05/11 13:48:25 by lguillau         ###   ########.fr       */
+/*   Updated: 2022/05/11 16:58:10 by lguillau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <unistd.h>
-# include "struct.h"
+# include <sys/time.h>
 
-typedef long long	t_ll;
+# include "struct.h"
 
 /* Parsing */
 
@@ -32,5 +32,7 @@ void	ft_putstr_fd(char *s, int fd);
 void	free_char_tab(char **s);
 
 void	ft_free(t_g *v);
+
+t_ull	get_time(void);
 
 #endif

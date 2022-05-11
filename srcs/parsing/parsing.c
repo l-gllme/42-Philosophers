@@ -6,7 +6,7 @@
 /*   By: lguillau <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 14:22:29 by lguillau          #+#    #+#             */
-/*   Updated: 2022/05/11 13:46:42 by lguillau         ###   ########.fr       */
+/*   Updated: 2022/05/11 17:02:31 by lguillau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,14 +71,14 @@ int	ft_check_args(int ac, char **av, t_g *v)
 	{
 		if (ft_strlen(av[i]) > 11)
 		{
-			ft_putstr_fd("Error: too big number detected\n", 2);
+			ft_putstr_fd("Error: number too big detected\n", 2);
 			free(v->args);
 			return (-1);
 		}
 		number = ft_atoi(av[i]);
 		if (number > 2147483647)
 		{
-			ft_putstr_fd("Error: too big number detected\n", 2);
+			ft_putstr_fd("Error: number too big detected\n", 2);
 			free(v->args);
 			return (-1);
 		}
