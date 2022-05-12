@@ -6,7 +6,7 @@
 #    By: lguillau <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/10 13:20:14 by lguillau          #+#    #+#              #
-#    Updated: 2022/05/11 15:55:42 by lguillau         ###   ########.fr        #
+#    Updated: 2022/05/12 20:31:54 by lguillau         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,7 @@ ${O_PATH}%.o:	${S_PATH}%.c
 		@echo "${CYAN}Compiling${S} ${IGREY}$<${S} ${YELLOW}➡️  ${S}${SBLUE}$@${S}"
 
 ${NAME}:	${OBJS}
-		@${CC} ${OBJS} ${CFLAGS} -o ${NAME} -I ${I_PATH}
+		@${CC} ${OBJS} ${CFLAGS} -o ${NAME} -pthread  -I ${I_PATH}
 		@echo ""
 		@echo "${PURPLE}Building${S} ${IGREY}$@${S} 🔨"
 		@echo ""

@@ -6,7 +6,7 @@
 /*   By: lguillau <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 13:26:25 by lguillau          #+#    #+#             */
-/*   Updated: 2022/05/12 15:01:29 by lguillau         ###   ########.fr       */
+/*   Updated: 2022/05/12 20:38:03 by lguillau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,10 @@ void	*routine(void *arg)
 	(void)arg;
 	int i = 0;
 	while (++i < 10)
+	{
+		sleep(1);
 		printf("toto\n");
+	}
 	return (NULL);
 }
 
@@ -26,7 +29,10 @@ void	tata(void *arg)
 	(void)arg;
 	int i = 0;
 	while (++i < 10)
+	{
+		sleep(1);
 		printf("tata\n");
+	}
 }
 
 int	main(int ac, char **av)
@@ -50,8 +56,9 @@ int	main(int ac, char **av)
 		free(v);
 		return (-1);
 	}
-	pthread_create(&new, NULL, &routine, NULL);
+	pthread_create(&new, NULL, routine, NULL);
 	tata(NULL);
+	pthread_join(new, NULL);
 	ft_free(v);
 	return (0);
 }
