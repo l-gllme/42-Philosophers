@@ -6,7 +6,7 @@
 /*   By: lguillau <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 14:22:29 by lguillau          #+#    #+#             */
-/*   Updated: 2022/05/11 17:14:56 by lguillau         ###   ########.fr       */
+/*   Updated: 2022/05/12 14:52:43 by lguillau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ t_ll	ft_atoi(const char *str)
 int	ft_check_args(int ac, char **av, t_g *v)
 {
 	int	i;
-	int	j;
 	t_ll	number;
 
 	i = 0;
@@ -81,9 +80,9 @@ int	ft_check_args(int ac, char **av, t_g *v)
 			v->nbr_philo = number;
 		if (i == 2)
 			v->time_to_die = number;
-		if (i = 3)
+		if (i == 3)
 			v->time_to_eat = number;
-		if (i = 4)
+		if (i == 4)
 			v->time_to_sleep = number;
 		if (i == 5)
 			v->nbr_of_eat = number;
