@@ -6,18 +6,32 @@
 /*   By: lguillau <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 13:26:25 by lguillau          #+#    #+#             */
-/*   Updated: 2022/05/16 15:51:02 by lguillau         ###   ########.fr       */
+/*   Updated: 2022/05/18 14:26:59 by lguillau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	*routine(void *arg, t_g *v)
+void	*routine(void *arg)
 {
-	(void)arg;
-	usleep(100000);
-	printf("%llu\n", get_time() - v->start_time);
+	t_g	*v;
+	v = (t_g *)arg;
+	while (1)
+	{
+		usleep(50000);
+		printf("%llu\n", get_time() - v->start_time);
+	}
 	return (NULL);
+}
+
+void	mutex_forks_init(t_g *v)
+{
+	int	i;
+
+	i = -1;
+	v->forks = malloc(sizeof(pthread_mutex_t) * (v->nbr_philo));
+	while (++i < v->nbr_philo)
+		pthread_mutex_init(&v->forks[i], NULL);
 }
 
 int	main(int ac, char **av)
@@ -26,7 +40,6 @@ int	main(int ac, char **av)
 	pthread_t	*new;
 	int	i;
 
-	i = -1;
 	v = malloc(sizeof(t_g));
 	if (!v)
 	{
@@ -43,11 +56,13 @@ int	main(int ac, char **av)
 		free(v);
 		return (-1);
 	}
+	mutex_forks_init(v);
 	new = malloc(sizeof(pthread_t) * (v->nbr_philo));
+	i = -1;
 	while (++i < v->nbr_philo)
 	{
-		usleep(100000);
-		pthread_create(&new[i], NULL, routine(NULL, v), NULL);
+		usleep(6000);
+		pthread_create(&new[i], NULL, &routine, v);
 	}
 	i = -1;
 	while (++i < v->nbr_philo)
