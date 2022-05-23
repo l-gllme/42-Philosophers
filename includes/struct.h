@@ -6,7 +6,7 @@
 /*   By: lguillau <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 13:26:47 by lguillau          #+#    #+#             */
-/*   Updated: 2022/05/18 16:00:48 by lguillau         ###   ########.fr       */
+/*   Updated: 2022/05/23 14:57:53 by lguillau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ typedef struct	s_philo
 {
 	int	place;
 	t_ull	last_eat;
-	t_ull	last_sleep;
+	int	timed_ate;
 	struct s_global *v;
 }	t_p;
 
@@ -32,7 +32,9 @@ typedef struct	s_global
 	int	time_to_sleep;
 	int	nbr_of_eat;
 	int	limited_eat;
+	int	died;
 	t_p	*p;
+	pthread_mutex_t	mutex;
 	pthread_mutex_t	*forks;
 	t_ull	start_time;
 	t_ull	current_time;
