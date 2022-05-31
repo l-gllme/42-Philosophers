@@ -6,16 +6,11 @@
 /*   By: lguillau <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 13:26:25 by lguillau          #+#    #+#             */
-/*   Updated: 2022/05/23 18:30:58 by lguillau         ###   ########.fr       */
+/*   Updated: 2022/05/31 19:31:45 by lguillau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-
-t_ull	get_c_time(t_g *v)
-{
-	return (get_time() - v->start_time);
-}
 
 int	ft_check_death(t_p *p, t_g *v)
 {

@@ -6,7 +6,7 @@
 #    By: lguillau <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/10 13:20:14 by lguillau          #+#    #+#              #
-#    Updated: 2022/05/12 20:31:54 by lguillau         ###   ########.fr        #
+#    Updated: 2022/05/31 19:32:45 by lguillau         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,6 +14,7 @@ FILES	=	philo.c \
 		utils/str_tools.c \
 		utils/errors_and_free.c \
 		utils/time.c \
+		utils/philo_tools.c \
 		parsing/parsing.c \
 
 S_PATH	=	srcs/
