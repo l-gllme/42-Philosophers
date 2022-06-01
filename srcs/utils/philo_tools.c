@@ -6,7 +6,7 @@
 /*   By: lguillau <lguillau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 19:30:37 by lguillau          #+#    #+#             */
-/*   Updated: 2022/06/01 15:34:01 by lguillau         ###   ########.fr       */
+/*   Updated: 2022/06/01 17:38:41 by lguillau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,13 @@
 
 void	print_line(t_g *v, t_p *p, int choice)
 {
+	pthread_mutex_lock(&v->mutex);
+	if (v->died)
+	{
+		pthread_mutex_unlock(&v->mutex);
+		return ;
+	}
+	pthread_mutex_unlock(&v->mutex);
 	pthread_mutex_lock(&v->print);
 	printf("\033[36m%llu\033[0m \033[33m%d\033[0m", get_c_time(v), p->place);
 	if (choice == 1)
@@ -21,7 +28,7 @@ void	print_line(t_g *v, t_p *p, int choice)
 	else if (choice == 2)
 		printf(" is sleeping\n");
 	else if (choice == 3)
-		printf(" as taken a fork\n");
+		printf(" has taken a fork\n");
 	else if (choice == 4)
 		printf(" is eating\n");
 	else if (choice == 5)

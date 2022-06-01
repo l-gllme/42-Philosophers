@@ -6,7 +6,7 @@
 /*   By: lguillau <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 13:26:47 by lguillau          #+#    #+#             */
-/*   Updated: 2022/06/01 15:31:49 by lguillau         ###   ########.fr       */
+/*   Updated: 2022/06/01 16:40:48 by lguillau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ typedef struct	s_philo
 	t_ull	last_eat;
 	int	timed_ate;
 	struct s_global *v;
+	pthread_mutex_t	l_eat;
 }	t_p;
 
 typedef struct	s_global
