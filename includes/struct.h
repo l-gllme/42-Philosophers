@@ -6,7 +6,7 @@
 /*   By: lguillau <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 13:26:47 by lguillau          #+#    #+#             */
-/*   Updated: 2022/05/23 14:57:53 by lguillau         ###   ########.fr       */
+/*   Updated: 2022/06/01 15:31:49 by lguillau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef struct	s_global
 	t_p	*p;
 	pthread_mutex_t	mutex;
 	pthread_mutex_t	*forks;
+	pthread_mutex_t	print;
 	t_ull	start_time;
 	t_ull	current_time;
 }	t_g;
