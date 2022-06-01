@@ -6,7 +6,7 @@
 /*   By: lguillau <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 13:26:25 by lguillau          #+#    #+#             */
-/*   Updated: 2022/06/01 17:29:19 by lguillau         ###   ########.fr       */
+/*   Updated: 2022/06/01 17:50:40 by lguillau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ void	*routine(void *arg)
 	i = v->died;
 	pthread_mutex_unlock(&v->mutex);
 	if (p->place % 2 == 0)
-		usleep(v->time_to_eat * 1000);
+		ft_usleep(v->time_to_eat);
 	while (i == 0)
 	{
 		ft_eat(v, p);
