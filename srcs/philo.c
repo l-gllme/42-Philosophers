@@ -6,7 +6,7 @@
 /*   By: lguillau <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 13:26:25 by lguillau          #+#    #+#             */
-/*   Updated: 2022/06/01 17:50:40 by lguillau         ###   ########.fr       */
+/*   Updated: 2022/06/03 14:11:05 by lguillau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,16 @@
 
 int	ft_check_death(t_p *p, t_g *v)
 {
+	if (v->limited_eat != 0)
+	{
+		pthread_mutex_lock(&p->t_eat);
+		if (p->time_ate == v->nbr_of_eat)
+		{
+			pthread_mutex_unlock(&p->t_eat);
+			return (0);
+		}
+		pthread_mutex_unlock(&p->t_eat);
+	}
 	pthread_mutex_lock(&p->l_eat);
 	if ((get_c_time(v) - p->last_eat) >= (t_ull)v->time_to_die)
 	{
@@ -44,24 +54,20 @@ void	*death_routine(void *arg)
 			if (ft_check_death(&p[i], v) == 0)
 				return (NULL);
 		}
-		ft_usleep(v->time_to_die);
+		//ft_usleep(v->time_to_die / 10, v);
 	}
 	return (NULL);
 }
 
 void	ft_sleep(t_g *v, t_p *p)
 {
-	t_ull	start_sleep;
-
-	start_sleep = get_c_time(v);
-
 	if (p->place == 1)
 		pthread_mutex_unlock(&v->forks[v->nbr_philo - 1]);
 	else 
 		pthread_mutex_unlock(&v->forks[p->place - 2]);
 	pthread_mutex_unlock(&v->forks[p->place - 1]);
 	print_line(v, p, 2);
-	ft_usleep(v->time_to_sleep);
+	ft_usleep(v->time_to_sleep, v);
 }
 void	ft_eat(t_g *v, t_p *p)
 {
@@ -76,7 +82,7 @@ void	ft_eat(t_g *v, t_p *p)
 	p->last_eat = get_c_time(v);
 	pthread_mutex_unlock(&p->l_eat);
 	print_line(v, p, 4);
-	ft_usleep(v->time_to_eat);
+	ft_usleep(v->time_to_eat, v);
 }
 
 void	ft_think(t_g *v, t_p *p)
@@ -96,15 +102,31 @@ void	*routine(void *arg)
 	i = v->died;
 	pthread_mutex_unlock(&v->mutex);
 	if (p->place % 2 == 0)
-		ft_usleep(v->time_to_eat);
+		ft_usleep(v->time_to_eat, v);
 	while (i == 0)
 	{
+		if (v->limited_eat != 0)
+		{
+			pthread_mutex_lock(&p->t_eat);
+			if (p->time_ate == v->nbr_of_eat)
+			{
+				pthread_mutex_unlock(&p->t_eat);
+				return (NULL);
+			}
+			pthread_mutex_unlock(&p->t_eat);
+		}
 		ft_eat(v, p);
 		ft_sleep(v, p);
 		ft_think(v, p);
 		pthread_mutex_lock(&v->mutex);
 		i = v->died;
 		pthread_mutex_unlock(&v->mutex);
+		if (v->limited_eat != 0)
+		{
+			pthread_mutex_lock(&p->t_eat);
+			p->time_ate++;
+			pthread_mutex_unlock(&p->t_eat);
+		}
 	}
 	return (NULL);
 }
@@ -159,7 +181,6 @@ int	main(int ac, char **av)
 	pthread_mutex_init(&v->mutex, NULL);
 	pthread_mutex_init(&v->print, NULL);
 	new = malloc(sizeof(pthread_t) * (v->nbr_philo));
-	//death_t = malloc(sizeof(pthread_t));
 	p = malloc(sizeof(t_p) * (v->nbr_philo));
 	v->p = p;
 	i = -1;
@@ -169,6 +190,7 @@ int	main(int ac, char **av)
 		p[i].place = i + 1;
 		p[i].last_eat = 0;
 		pthread_mutex_init(&p[i].l_eat, NULL);
+		pthread_mutex_init(&p[i].t_eat, NULL);
 		pthread_create(&new[i], NULL, &routine, &p[i]);
 	}
 	pthread_create(&death_t, NULL, &death_routine, p);

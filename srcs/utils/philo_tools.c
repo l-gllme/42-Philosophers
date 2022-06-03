@@ -6,7 +6,7 @@
 /*   By: lguillau <lguillau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 19:30:37 by lguillau          #+#    #+#             */
-/*   Updated: 2022/06/01 17:38:41 by lguillau         ###   ########.fr       */
+/*   Updated: 2022/06/03 13:25:05 by lguillau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,22 @@ void	print_line(t_g *v, t_p *p, int choice)
 	pthread_mutex_unlock(&v->print);
 }
 
-void	ft_usleep(t_ull	time_to_wait)
+void	ft_usleep(t_ull	time_to_wait, t_g *v)
 {
 	t_ull	t;
 
 	t = get_time();
 	while ((get_time() - t) < time_to_wait)
+	{
+		pthread_mutex_lock(&v->mutex);
+		if (v->died == 1)
+		{
+			pthread_mutex_unlock(&v->mutex);
+			return ;
+		}
+		pthread_mutex_unlock(&v->mutex);
 		usleep(time_to_wait / 10);
+	}
 }
 
 t_ull	get_c_time(t_g *v)

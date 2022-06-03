@@ -6,7 +6,7 @@
 /*   By: lguillau <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 14:15:00 by lguillau          #+#    #+#             */
-/*   Updated: 2022/05/31 19:32:29 by lguillau         ###   ########.fr       */
+/*   Updated: 2022/06/03 13:23:57 by lguillau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	free_char_tab(char **s);
 void	ft_free(t_g *v);
 
 void	print_line(t_g *v, t_p *p, int choice);
-void	ft_usleep(t_ull	time_to_wait);
+void	ft_usleep(t_ull	time_to_wait, t_g *v);
 t_ull	get_c_time(t_g *v);
 
 t_ull	get_time(void);
