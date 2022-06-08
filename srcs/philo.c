@@ -6,7 +6,7 @@
 /*   By: lguillau <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 13:26:25 by lguillau          #+#    #+#             */
-/*   Updated: 2022/06/03 16:14:20 by lguillau         ###   ########.fr       */
+/*   Updated: 2022/06/08 18:18:53 by lguillau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,18 +64,13 @@ void	*death_routine(void *arg)
 			if (ft_check_death(&p[i], v) == 0)
 				return (NULL);
 		}
-		ft_usleep(1, v);
+		usleep(10);
 	}
 	return (NULL);
 }
 
 void	ft_sleep(t_g *v, t_p *p)
 {
-	if (p->place == 1)
-		pthread_mutex_unlock(&v->forks[v->nbr_philo - 1]);
-	else 
-		pthread_mutex_unlock(&v->forks[p->place - 2]);
-	pthread_mutex_unlock(&v->forks[p->place - 1]);
 	print_line(v, p, 2);
 	ft_usleep(v->time_to_sleep, v);
 }
@@ -93,6 +88,11 @@ void	ft_eat(t_g *v, t_p *p)
 	pthread_mutex_unlock(&p->l_eat);
 	print_line(v, p, 4);
 	ft_usleep(v->time_to_eat, v);
+	if (p->place == 1)
+		pthread_mutex_unlock(&v->forks[v->nbr_philo - 1]);
+	else 
+		pthread_mutex_unlock(&v->forks[p->place - 2]);
+	pthread_mutex_unlock(&v->forks[p->place - 1]);
 }
 
 void	ft_think(t_g *v, t_p *p)

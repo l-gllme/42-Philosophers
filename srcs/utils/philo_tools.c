@@ -6,7 +6,7 @@
 /*   By: lguillau <lguillau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 19:30:37 by lguillau          #+#    #+#             */
-/*   Updated: 2022/06/03 13:25:05 by lguillau         ###   ########.fr       */
+/*   Updated: 2022/06/08 18:20:04 by lguillau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 
 void	print_line(t_g *v, t_p *p, int choice)
 {
+	t_ull	time;
+
+	time = get_c_time(v);
 	pthread_mutex_lock(&v->mutex);
 	if (v->died)
 	{
@@ -22,7 +25,7 @@ void	print_line(t_g *v, t_p *p, int choice)
 	}
 	pthread_mutex_unlock(&v->mutex);
 	pthread_mutex_lock(&v->print);
-	printf("\033[36m%llu\033[0m \033[33m%d\033[0m", get_c_time(v), p->place);
+	printf("\033[36m%llu\033[0m \033[33m%d\033[0m", time, p->place);
 	if (choice == 1)
 		printf(" died\n");
 	else if (choice == 2)
