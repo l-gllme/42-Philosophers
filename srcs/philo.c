@@ -6,7 +6,7 @@
 /*   By: lguillau <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 13:26:25 by lguillau          #+#    #+#             */
-/*   Updated: 2022/06/08 18:18:53 by lguillau         ###   ########.fr       */
+/*   Updated: 2022/06/09 13:33:34 by lguillau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,12 +77,19 @@ void	ft_sleep(t_g *v, t_p *p)
 void	ft_eat(t_g *v, t_p *p)
 {
 	if (p->place == 1)
+	{
+		pthread_mutex_lock(&v->forks[p->place - 1]);
+		print_line(v, p, 3);
 		pthread_mutex_lock(&v->forks[v->nbr_philo - 1]);
+		print_line(v, p, 3);
+	}
 	else 
+	{
 		pthread_mutex_lock(&v->forks[p->place - 2]);
-	print_line(v, p, 3);
-	pthread_mutex_lock(&v->forks[p->place - 1]);
-	print_line(v, p, 3);
+		print_line(v, p, 3);
+		pthread_mutex_lock(&v->forks[p->place - 1]);
+		print_line(v, p, 3);
+	}
 	pthread_mutex_lock(&p->l_eat);
 	p->last_eat = get_c_time(v);
 	pthread_mutex_unlock(&p->l_eat);

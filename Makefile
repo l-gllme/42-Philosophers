@@ -6,7 +6,7 @@
 #    By: lguillau <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/10 13:20:14 by lguillau          #+#    #+#              #
-#    Updated: 2022/05/31 19:32:45 by lguillau         ###   ########.fr        #
+#    Updated: 2022/06/09 13:38:47 by lguillau         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ CC	=	clang
 
 RM	=	rm -rf
 
-CFLAGS	=	-Wall -Wextra -Werror -g3
+CFLAGS	=	-Wall -Wextra -Werror -pthread -g3 -fsanitize=thread
 
 ${O_PATH}%.o:	${S_PATH}%.c
 		@mkdir -p ${dir $@}
@@ -38,7 +38,7 @@ ${O_PATH}%.o:	${S_PATH}%.c
 		@echo "${CYAN}Compiling${S} ${IGREY}$<${S} ${YELLOW}➡️  ${S}${SBLUE}$@${S}"
 
 ${NAME}:	${OBJS}
-		@${CC} ${OBJS} ${CFLAGS} -o ${NAME} -pthread  -I ${I_PATH}
+		@${CC} ${OBJS} ${CFLAGS} -o ${NAME} -lpthread -pthread -g3 -fsanitize=thread -I ${I_PATH}
 		@echo ""
 		@echo "${PURPLE}Building${S} ${IGREY}$@${S} 🔨"
 		@echo ""
