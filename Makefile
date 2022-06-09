@@ -6,11 +6,12 @@
 #    By: lguillau <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/10 13:20:14 by lguillau          #+#    #+#              #
-#    Updated: 2022/06/09 13:38:47 by lguillau         ###   ########.fr        #
+#    Updated: 2022/06/09 17:39:19 by lguillau         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 FILES	=	philo.c \
+		ft_actions.c \
 		utils/str_tools.c \
 		utils/errors_and_free.c \
 		utils/time.c \
@@ -30,7 +31,7 @@ CC	=	clang
 
 RM	=	rm -rf
 
-CFLAGS	=	-Wall -Wextra -Werror -pthread -g3 -fsanitize=thread
+CFLAGS	=	-Wall -Wextra -Werror -g3 
 
 ${O_PATH}%.o:	${S_PATH}%.c
 		@mkdir -p ${dir $@}
@@ -38,7 +39,7 @@ ${O_PATH}%.o:	${S_PATH}%.c
 		@echo "${CYAN}Compiling${S} ${IGREY}$<${S} ${YELLOW}➡️  ${S}${SBLUE}$@${S}"
 
 ${NAME}:	${OBJS}
-		@${CC} ${OBJS} ${CFLAGS} -o ${NAME} -lpthread -pthread -g3 -fsanitize=thread -I ${I_PATH}
+		@${CC} ${OBJS} ${CFLAGS} -o ${NAME} -pthread -I ${I_PATH}
 		@echo ""
 		@echo "${PURPLE}Building${S} ${IGREY}$@${S} 🔨"
 		@echo ""

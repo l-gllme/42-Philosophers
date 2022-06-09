@@ -6,7 +6,7 @@
 /*   By: lguillau <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 15:51:54 by lguillau          #+#    #+#             */
-/*   Updated: 2022/05/11 16:49:27 by lguillau         ###   ########.fr       */
+/*   Updated: 2022/06/09 18:19:27 by lguillau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_ull	get_time(void)
 {
-	t_ull	time;
+	t_ull			time;
 	struct timeval	tv;
 	struct timezone	tz;
 

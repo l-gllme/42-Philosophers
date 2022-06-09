@@ -6,7 +6,7 @@
 /*   By: lguillau <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 14:22:29 by lguillau          #+#    #+#             */
-/*   Updated: 2022/06/03 13:37:43 by lguillau         ###   ########.fr       */
+/*   Updated: 2022/06/09 18:26:39 by lguillau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,37 @@ t_ll	ft_atoi(const char *str)
 	return (res * sign);
 }
 
+static int	cut_parsing(t_g *v, int i, char **av)
+{
+	t_ll	number;
+
+	number = ft_atoi(av[i]);
+	if (ft_strlen(av[i]) > 11 || number > 2147483647)
+	{
+		ft_putstr_fd("Error: number too big detected\n", 2);
+		return (-1);
+	}
+	if (number < 0)
+	{
+		ft_putstr_fd("Error: negative number detected\n", 2);
+		return (-1);
+	}
+	if (i == 1)
+		v->nbr_philo = number;
+	if (i == 2)
+		v->time_to_die = number;
+	if (i == 3)
+		v->time_to_eat = number;
+	if (i == 4)
+		v->time_to_sleep = number;
+	if (i == 5)
+		v->nbr_of_eat = number;
+	return (0);
+}
+
 int	ft_check_args(int ac, char **av, t_g *v)
 {
 	int	i;
-	t_ll	number;
 
 	i = 0;
 	if (ac < 5 || ac > 6)
@@ -59,33 +86,7 @@ int	ft_check_args(int ac, char **av, t_g *v)
 	}
 	i = 0;
 	while (av[++i])
-	{
-		if (ft_strlen(av[i]) > 11)
-		{
-			ft_putstr_fd("Error: number too big detected\n", 2);
+		if (cut_parsing(v, i, av) == -1)
 			return (-1);
-		}
-		number = ft_atoi(av[i]);
-		if (number > 2147483647)
-		{
-			ft_putstr_fd("Error: number too big detected\n", 2);
-			return (-1);
-		}
-		if (number < 0)
-		{
-			ft_putstr_fd("Error: negative number detected\n", 2);
-			return (-1);
-		}
-		if (i == 1)
-			v->nbr_philo = number;
-		if (i == 2)
-			v->time_to_die = number;
-		if (i == 3)
-			v->time_to_eat = number;
-		if (i == 4)
-			v->time_to_sleep = number;
-		if (i == 5)
-			v->nbr_of_eat = number;
-	}
 	return (0);
 }
