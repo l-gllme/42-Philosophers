@@ -6,12 +6,13 @@
 #    By: lguillau <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/10 13:20:14 by lguillau          #+#    #+#              #
-#    Updated: 2022/06/09 17:39:19 by lguillau         ###   ########.fr        #
+#    Updated: 2022/06/10 19:09:07 by lguillau         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 FILES	=	philo.c \
 		ft_actions.c \
+		routines.c \
 		utils/str_tools.c \
 		utils/errors_and_free.c \
 		utils/time.c \

@@ -6,7 +6,7 @@
 /*   By: lguillau <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 14:15:00 by lguillau          #+#    #+#             */
-/*   Updated: 2022/06/09 18:31:03 by lguillau         ###   ########.fr       */
+/*   Updated: 2022/06/10 19:07:26 by lguillau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,11 @@ void	ft_sleep(t_g *v, t_p *p);
 void	ft_eat(t_g *v, t_p *p);
 void	ft_think(t_g *v, t_p *p);
 int		ft_check_death(t_p *p, t_g *v);
+
+/* Routines */
+
+void	*routine(void *arg);
+void	*death_routine(void *arg);
 
 t_ull	get_time(void);
 

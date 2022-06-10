@@ -6,82 +6,11 @@
 /*   By: lguillau <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 13:26:25 by lguillau          #+#    #+#             */
-/*   Updated: 2022/06/09 18:41:29 by lguillau         ###   ########.fr       */
+/*   Updated: 2022/06/10 19:06:41 by lguillau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-
-void	*death_routine(void *arg)
-{
-	t_g	*v;
-	t_p	*p;
-	int	i;
-	
-	p = (t_p *)arg;
-	v = p->v;
-	while (1)
-	{
-		i = -1;
-		if (v->limited_eat != 0)
-		{
-			pthread_mutex_lock(&v->all_eat);
-			if (v->all_ate == v->nbr_philo)
-			{
-				pthread_mutex_unlock(&v->all_eat);
-				return (NULL);
-			}
-			pthread_mutex_unlock(&v->all_eat);
-		}
-		while (++i < v->nbr_philo)
-		{
-			if (ft_check_death(&p[i], v) == 0)
-				return (NULL);
-		}
-		usleep(10);
-	}
-	return (NULL);
-}
-
-void	*routine(void *arg)
-{
-	t_g	*v;
-	t_p	*p;
-	int	i;
-
-	p = (t_p *)arg;
-	v = p->v;
-	pthread_mutex_lock(&v->mutex);
-	i = v->died;
-	pthread_mutex_unlock(&v->mutex);
-	if (p->place % 2 == 0)
-		ft_usleep(v->time_to_eat, v);
-	while (i == 0)
-	{
-		if (v->limited_eat != 0)
-		{
-			if (p->time_ate == v->nbr_of_eat)
-			{
-				pthread_mutex_lock(&p->t_eat);
-				p->eat_finished = 1;
-				pthread_mutex_unlock(&p->t_eat);
-				pthread_mutex_lock(&v->all_eat);
-				v->all_ate++;
-				pthread_mutex_unlock(&v->all_eat);
-				return (NULL);
-			}
-		}
-		ft_eat(v, p);
-		ft_sleep(v, p);
-		ft_think(v, p);
-		pthread_mutex_lock(&v->mutex);
-		i = v->died;
-		pthread_mutex_unlock(&v->mutex);
-		if (v->limited_eat != 0)
-			p->time_ate++;
-	}
-	return (NULL);
-}
 
 void	mutex_forks_init(t_g *v)
 {
