@@ -6,7 +6,7 @@
 /*   By: lguillau <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 13:26:25 by lguillau          #+#    #+#             */
-/*   Updated: 2022/06/10 19:06:41 by lguillau         ###   ########.fr       */
+/*   Updated: 2022/06/12 19:39:30 by lguillau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,41 +32,16 @@ int	one_philo(t_g *v)
 	printf("\033[36m0\033[0m \033[33m1\033[0m has taken a fork\n");
 	usleep(v->time_to_die * 1000);
 	printf("\033[36m%d\033[0m \033[33m1\033[0m died\n", v->time_to_die);
-	ft_free(v);
+	free(v);
 	return (0);
 }
 
-int	main(int ac, char **av)
+void	launch_threads(t_g *v, t_p *p, int i)
 {
-	t_g	*v;
 	pthread_t	*new;
 	pthread_t	death_t;
-	t_p	*p;
-	int	i;
 
-	v = malloc(sizeof(t_g));
-	if (!v)
-	{
-		ft_putstr_fd("Error: malloc failled in main\n", 2);
-		return (-1);
-	}
-	if (ac == 6)
-		v->limited_eat = 1;
-	else
-		v->limited_eat = 0;
-	v->start_time = get_time();
-	if (ft_check_args(ac, av, v) == -1)
-	{
-		free(v);
-		return (-1);
-	}
-	if (v->nbr_philo == 1)
-		return (one_philo(v));
-	mutex_forks_init(v);
 	new = malloc(sizeof(pthread_t) * (v->nbr_philo));
-	p = malloc(sizeof(t_p) * (v->nbr_philo));
-	v->p = p;
-	i = -1;
 	while (++i < v->nbr_philo)
 	{
 		p[i].v = v;
@@ -83,6 +58,43 @@ int	main(int ac, char **av)
 	while (++i < v->nbr_philo)
 		pthread_join(new[i], NULL);
 	pthread_join(death_t, NULL);
-	ft_free(v);
+	free(new);
+}
+
+static int	cut_main(t_g *v, int ac, char **av)
+{
+	if (!v)
+	{
+		ft_putstr_fd("Error: malloc failled in main\n", 2);
+		return (-1);
+	}
+	if (ac == 6)
+		v->limited_eat = 1;
+	else
+		v->limited_eat = 0;
+	v->start_time = get_time();
+	if (ft_check_args(ac, av, v) == -1)
+	{
+		free(v);
+		return (-1);
+	}
+	return (0);
+}
+
+int	main(int ac, char **av)
+{
+	t_g	*v;
+	t_p	*p;
+
+	v = malloc(sizeof(t_g));
+	if (cut_main(v, ac, av) == -1)
+		return (-1);
+	if (v->nbr_philo == 1)
+		return (one_philo(v));
+	mutex_forks_init(v);
+	p = malloc(sizeof(t_p) * (v->nbr_philo));
+	v->p = p;
+	launch_threads(v, p, -1);
+	ft_free(v, p);
 	return (0);
 }

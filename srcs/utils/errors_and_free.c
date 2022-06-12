@@ -6,13 +6,17 @@
 /*   By: lguillau <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 13:47:16 by lguillau          #+#    #+#             */
-/*   Updated: 2022/05/12 14:52:13 by lguillau         ###   ########.fr       */
+/*   Updated: 2022/06/12 19:37:46 by lguillau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	ft_free(t_g *v)
+void	ft_free(t_g *v, t_p *p)
 {
+	if (v->forks)
+		free(v->forks);
 	free(v);
+	if (p != NULL)
+		free(p);
 }

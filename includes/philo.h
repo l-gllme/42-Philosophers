@@ -6,7 +6,7 @@
 /*   By: lguillau <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 14:15:00 by lguillau          #+#    #+#             */
-/*   Updated: 2022/06/10 19:07:26 by lguillau         ###   ########.fr       */
+/*   Updated: 2022/06/12 19:34:17 by lguillau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int		ft_strlen(const char *s);
 void	ft_putstr_fd(char *s, int fd);
 void	free_char_tab(char **s);
 
-void	ft_free(t_g *v);
+void	ft_free(t_g *v, t_p *p);
 
 void	print_line(t_g *v, t_p *p, int choice);
 void	print_death(t_g *v, t_p *p);
