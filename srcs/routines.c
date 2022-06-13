@@ -6,7 +6,7 @@
 /*   By: lguillau <lguillau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 19:05:02 by lguillau          #+#    #+#             */
-/*   Updated: 2022/06/13 16:34:45 by lguillau         ###   ########.fr       */
+/*   Updated: 2022/06/13 19:57:44 by lguillau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,8 @@ void	*routine(void *arg)
 		pthread_mutex_unlock(&v->mutex);
 		if (v->limited_eat != 0)
 			p->time_ate++;
+		if (v->nbr_philo % 2 != 0)
+			usleep(100);
 	}
 	return (NULL);
 }
