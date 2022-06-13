@@ -6,7 +6,7 @@
 /*   By: lguillau <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 13:26:25 by lguillau          #+#    #+#             */
-/*   Updated: 2022/06/12 19:44:49 by lguillau         ###   ########.fr       */
+/*   Updated: 2022/06/13 16:33:50 by lguillau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,11 @@ int	main(int ac, char **av)
 		return (-1);
 	if (v->nbr_philo == 1)
 		return (one_philo(v));
+	if (v->nbr_philo == 0)
+	{
+		free(v);
+		return (0);
+	}
 	mutex_forks_init(v);
 	p = malloc(sizeof(t_p) * (v->nbr_philo));
 	v->p = p;

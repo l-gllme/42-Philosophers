@@ -6,7 +6,7 @@
 /*   By: lguillau <lguillau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 19:30:37 by lguillau          #+#    #+#             */
-/*   Updated: 2022/06/12 20:23:59 by lguillau         ###   ########.fr       */
+/*   Updated: 2022/06/13 16:34:19 by lguillau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	ft_usleep(t_ull	time_to_wait, t_g *v)
 			return ;
 		}
 		pthread_mutex_unlock(&v->mutex);
-		usleep(10);
+		usleep(100);
 	}
 }
 

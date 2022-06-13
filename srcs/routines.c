@@ -6,7 +6,7 @@
 /*   By: lguillau <lguillau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 19:05:02 by lguillau          #+#    #+#             */
-/*   Updated: 2022/06/12 20:15:20 by lguillau         ###   ########.fr       */
+/*   Updated: 2022/06/13 16:34:45 by lguillau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	*death_routine(void *arg)
 			if (ft_check_death(&p[i], v) == 0)
 				return (NULL);
 		}
-		usleep(10);
+		usleep(200);
 	}
 	return (NULL);
 }
