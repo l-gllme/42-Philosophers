@@ -6,7 +6,7 @@
 /*   By: lguillau <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 13:26:25 by lguillau          #+#    #+#             */
-/*   Updated: 2022/06/13 16:33:50 by lguillau         ###   ########.fr       */
+/*   Updated: 2022/06/14 12:57:57 by lguillau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,10 @@ void	mutex_forks_init(t_g *v)
 
 int	one_philo(t_g *v)
 {
-	printf("\033[36m0\033[0m \033[33m1\033[0m has taken a fork\n");
-	usleep(v->time_to_die * 1000);
-	printf("\033[36m%d\033[0m \033[33m1\033[0m died\n", v->time_to_die);
+	pthread_t	new;
+
+	pthread_create(&new, NULL, &solo_routine, v);
+	pthread_join(new, NULL);
 	free(v);
 	return (0);
 }

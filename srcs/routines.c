@@ -6,7 +6,7 @@
 /*   By: lguillau <lguillau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 19:05:02 by lguillau          #+#    #+#             */
-/*   Updated: 2022/06/13 19:57:44 by lguillau         ###   ########.fr       */
+/*   Updated: 2022/06/14 12:57:45 by lguillau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,5 +96,19 @@ void	*routine(void *arg)
 		if (v->nbr_philo % 2 != 0)
 			usleep(100);
 	}
+	return (NULL);
+}
+
+void	*solo_routine(void *arg)
+{
+	t_g	*v;
+
+	v = (t_g *)arg;
+	pthread_mutex_init(&v->mutex, NULL);
+	pthread_mutex_lock(&v->mutex);
+	printf("\033[36m0\033[0m \033[33m1\033[0m has taken a fork\n");
+	usleep(v->time_to_die * 1000);
+	printf("\033[36m%d\033[0m \033[33m1\033[0m died\n", v->time_to_die);
+	pthread_mutex_unlock(&v->mutex);
 	return (NULL);
 }

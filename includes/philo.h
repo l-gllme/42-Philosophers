@@ -6,7 +6,7 @@
 /*   By: lguillau <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 14:15:00 by lguillau          #+#    #+#             */
-/*   Updated: 2022/06/12 19:34:17 by lguillau         ###   ########.fr       */
+/*   Updated: 2022/06/14 12:51:57 by lguillau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ int		ft_check_death(t_p *p, t_g *v);
 
 void	*routine(void *arg);
 void	*death_routine(void *arg);
+void	*solo_routine(void *arg);
 
 t_ull	get_time(void);
 

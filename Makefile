@@ -6,7 +6,7 @@
 #    By: lguillau <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/10 13:20:14 by lguillau          #+#    #+#              #
-#    Updated: 2022/06/10 19:09:07 by lguillau         ###   ########.fr        #
+#    Updated: 2022/06/14 12:59:13 by lguillau         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,7 @@ CC	=	clang
 
 RM	=	rm -rf
 
-CFLAGS	=	-Wall -Wextra -Werror -g3 
+CFLAGS	=	-Wall -Wextra -Werror
 
 ${O_PATH}%.o:	${S_PATH}%.c
 		@mkdir -p ${dir $@}
